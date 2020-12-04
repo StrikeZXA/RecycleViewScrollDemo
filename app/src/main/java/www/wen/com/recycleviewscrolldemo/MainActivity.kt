@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.CallBack,View.OnClickLi
                 recyclerView.smoothScrollToPosition(changePosition)
             }
             R.id.button2 -> {
-                recyclerView.scrollBy(changePx, 0)
+                scrollBy()
             }
             R.id.button3 -> {
                 recyclerView.scrollToPosition(changePosition)
@@ -106,8 +106,7 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.CallBack,View.OnClickLi
                 )
             }
             R.id.button5 -> {
-                recyclerView.smoothScrollBy(changePx,0)
-
+                smoothScrollBy()
             }
             R.id.switchLayoutManage -> {
                 if(isHorizontal){
@@ -121,4 +120,23 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.CallBack,View.OnClickLi
 
         }
     }
+
+    private fun isHorizontal():Boolean{
+        return (recyclerView.layoutManager as LinearLayoutManager).orientation == HORIZONTAL
+    }
+
+    private fun scrollBy(){
+         if (isHorizontal())
+             recyclerView.scrollBy(changePx, 0)
+         else
+             recyclerView.scrollBy(0, changePx)
+    }
+
+    private fun smoothScrollBy(){
+        if (isHorizontal())
+            recyclerView.smoothScrollBy(changePx, 0)
+        else
+            recyclerView.smoothScrollBy(0, changePx)
+    }
+
 }
